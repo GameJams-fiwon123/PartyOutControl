@@ -15,6 +15,7 @@ public class Player : Person
     [Header("More Configs")]
     public Transform posHoldKid;
     public Animator handAnim;
+    public Transform kidsTransform;
 
 
     // Update is called once per frame
@@ -40,6 +41,7 @@ public class Player : Person
             kidInteract.transform.position = posHoldKid.position;
             kidInteract.transform.parent = posHoldKid.transform;
             kidInteract.GetComponent<Kid>().canMove = false;
+            kidInteract.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Kinematic;
             holdKid = kidInteract;
             holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
             kidInteract = null;
@@ -48,7 +50,8 @@ public class Player : Person
         {
             handAnim.Play("NoneHand");
             holdKid.GetComponent<Kid>().canMove = true;
-            holdKid.transform.parent = gameObject.transform.parent;
+            holdKid.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Dynamic;
+            holdKid.transform.parent = kidsTransform;
             holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
             holdKid = null;
         }
@@ -73,7 +76,7 @@ public class Player : Person
 
         LayerMask mask = LayerMask.GetMask("Floor");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 2f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.1f, mask);
 
         if (hit.collider != null)
         {
@@ -95,11 +98,22 @@ public class Player : Person
         if (dir.x > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            anim.Play("Run");
+            if(!holdKid)
+                handAnim.Play("NoneHand");
         }
         else if (dir.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            anim.Play("Run");
+            if(!holdKid)
+                handAnim.Play("NoneHand");
+        } else {
+            anim.Play("Idle");
+            if(!holdKid)
+                handAnim.Play("IdleNoneHand");
         }
+
         vel.x = dir.x * speed * Time.deltaTime;
         vel.y = rb2D.velocity.y;
 

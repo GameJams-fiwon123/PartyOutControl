@@ -7,10 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1113888829886550653, guid: 86b57342cd02fa541b47fc952053adfc,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0ba9968d6b8b4044c9953c40246082ff, type: 2}
+    - target: {fileID: 1749821503212026457, guid: 86b57342cd02fa541b47fc952053adfc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1010608947281393946, guid: 509c85169b6c09a46aa03da832cdd560,
+        type: 3}
     - target: {fileID: 8583954283553136789, guid: 86b57342cd02fa541b47fc952053adfc,
         type: 3}
       propertyPath: m_Name
-      value: Kid
+      value: Kid7
       objectReference: {fileID: 0}
     - target: {fileID: 8583954283553136791, guid: 86b57342cd02fa541b47fc952053adfc,
         type: 3}

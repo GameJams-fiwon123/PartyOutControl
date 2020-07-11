@@ -13,9 +13,12 @@ public class GameManger : MonoBehaviour
     [SerializeField]
     bool gameStarted = false;
 
+    public static GameManger instance;
+
     private void Start()
     {
         gameStarted = true;
+        instance = this;
     }
 
     // Update is called once per frame

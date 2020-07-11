@@ -7,6 +7,9 @@ TagManager:
   - Floor
   - Teleport
   - Kid
+  - HidePlace
+  - Wall
+  - ObjectivePlace
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Player
   - Collider
   - Floor
-  - 
+  - Wall
   - 
   - 
   - 

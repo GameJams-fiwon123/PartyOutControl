@@ -10,6 +10,7 @@ public class Kid : Person
 
     [Header("More Config")]
     public GameObject detectCollider;
+    public SpriteRenderer sprRenderer;
 
     Vector3 dir = Vector3.zero;
     Vector3 vel = Vector3.zero;
@@ -30,7 +31,6 @@ public class Kid : Person
     {
         if (canMove)
         {
-            //rb2D.bodyType = RigidbodyType2D.Dynamic;
             switch (currentState)
             {
                 case states.IDLE:
@@ -49,7 +49,6 @@ public class Kid : Person
         }
         else
         {
-            //rb2D.bodyType = RigidbodyType2D.Kinematic;
             vel = Vector3.zero;
             rb2D.velocity = vel;
         }
@@ -57,19 +56,59 @@ public class Kid : Person
 
     private void Hide()
     {
-        // Idle
+        countTime -= Time.deltaTime;
+
+        if (Random.Range(0, 100000) > 95000 && countTime < 0)
+        {
+            countTime = Random.Range(1f, 2f);
+            sprRenderer.enabled = true;
+            currentState = states.IDLE;
+        }
+        vel.x = Vector3.zero.x;
+        vel.y = rb2D.velocity.y;
+        rb2D.velocity = vel;
     }
 
     private void Jump()
     {
-        // Run
+        if (IsGround())
+        {
+            vel.y = jumpForce * Time.deltaTime;
+        }
+
+        rb2D.velocity = vel;
+        currentState = states.RUN;
+    }
+
+    private bool IsGround()
+    {
+
+        LayerMask mask = LayerMask.GetMask("Floor");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 0.1f, mask);
+
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+
+            if (hit.collider.tag == "Floor")
+                return true;
+        }
+
+        return false;
+
     }
 
     private void Run()
     {
         countTime -= Time.deltaTime;
 
-        if (countTime <= 0)
+        if (Random.Range(0, 100000) > 90000)
+        {
+            currentState = states.JUMP;
+        }
+
+        if (countTime <= 0 || IsWallClose())
         {
             isRun = true;
 
@@ -107,6 +146,23 @@ public class Kid : Person
         rb2D.velocity = vel;
     }
 
+    private bool IsWallClose()
+    {
+        LayerMask mask = LayerMask.GetMask("Wall");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.1f, mask);
+
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+
+            if (hit.collider.tag == "Wall")
+                return true;
+        }
+
+        return false;
+    }
+
     private void Idle()
     {
         countTime -= Time.deltaTime;
@@ -136,6 +192,17 @@ public class Kid : Person
             {
                 isRun = false;
                 other.GetComponent<Teleport>().ChangePlace(this);
+            }
+        }
+        else if (other.tag == "HidePlace")
+        {
+            if (Random.Range(0, 100000) > 20000 && isRun && !other.GetComponent<HidePlace>().kid)
+            {
+                isRun = false;
+                currentState = states.HIDE;
+                countTime = Random.Range(3f, 5f);
+                sprRenderer.enabled = false;
+                other.GetComponent<HidePlace>().Hide(this);
             }
         }
     }

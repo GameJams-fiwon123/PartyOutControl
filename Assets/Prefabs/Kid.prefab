@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 261833558457042095, guid: 784fb9441e3f0e740aa8595a26cade9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -235,7 +235,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e2a6d4fff6788ef4ebf47c65a67b2425, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -260,4 +260,5 @@ MonoBehaviour:
   canMove: 1
   objTeleport: {fileID: 0}
   detectCollider: {fileID: 8583954282403016941}
+  sprRenderer: {fileID: 1749821503212026457}
   currentState: 0
