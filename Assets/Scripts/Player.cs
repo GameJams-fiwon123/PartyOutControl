@@ -5,28 +5,17 @@ using UnityEngine;
 
 public class Player : Person
 {
-    public Animator handAnim;
 
-    SpriteRenderer sprRenderer;
     Vector3 dir = Vector3.zero;
     Vector3 vel = Vector3.zero;
 
-    public float speed = 250f;
-    public float jumpForce = 250f;
+    GameObject kidInteract = null;
+    GameObject holdKid = null;
 
-    public GameObject kidInteract = null;
-    public GameObject holdKid = null;
-
+    [Header("More Configs")]
     public Transform posHoldKid;
+    public Animator handAnim;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        anim = GetComponent<Animator>();
-        boxCol = GetComponent<BoxCollider2D>();
-        rb2D = GetComponent<Rigidbody2D>();
-        sprRenderer = GetComponent<SpriteRenderer>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -139,7 +128,7 @@ public class Player : Person
         {
             objTeleport = null;
         }
-        else if (other.tag == "Kid" && other.gameObject.Equals(kidInteract))
+        else if (other.tag == "Kid" && kidInteract && other.gameObject.Equals(kidInteract.GetComponent<Kid>().detectCollider))
         {
             kidInteract = null;
         }

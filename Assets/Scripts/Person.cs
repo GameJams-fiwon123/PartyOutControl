@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Person : MonoBehaviour
 {
-    public bool canMove = true;
+    
+    [Header("Configs")]
     public Rigidbody2D rb2D;
     public BoxCollider2D boxCol;
     public Animator anim;
 
+    [Header("Properties")]
+    public float speed = 250f;
+    public float jumpForce = 250f;
+    public bool canMove = true;
+
+    [HideInInspector]
     public Teleport objTeleport = null;
 
 }
