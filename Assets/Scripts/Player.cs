@@ -44,17 +44,23 @@ public class Player : Person
 
     private void InputInteract()
     {
-        if(Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid){
+        if (Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid)
+        {
             handAnim.Play("HoldHand");
-            kidInteract.transform.parent.position = posHoldKid.position;
-            kidInteract.transform.parent.parent = posHoldKid.transform;
-            kidInteract.transform.parent.GetComponent<Kid>().canMove = false;
+            kidInteract.transform.localScale = gameObject.transform.localScale;
+            kidInteract.transform.position = posHoldKid.position;
+            kidInteract.transform.parent = posHoldKid.transform;
+            kidInteract.GetComponent<Kid>().canMove = false;
             holdKid = kidInteract;
+            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
             kidInteract = null;
-        } else if (Input.GetKeyDown(KeyCode.X) && holdKid ){
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && holdKid)
+        {
             handAnim.Play("NoneHand");
-            posHoldKid.transform.GetChild(0).GetComponent<Kid>().canMove = true;
-            posHoldKid.transform.GetChild(0).parent = gameObject.transform.parent;
+            holdKid.GetComponent<Kid>().canMove = true;
+            holdKid.transform.parent = gameObject.transform.parent;
+            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
             holdKid = null;
         }
     }
@@ -120,8 +126,10 @@ public class Player : Person
         if (other.tag == "Teleport")
         {
             objTeleport = other.GetComponent<Teleport>();
-        } else if (other.tag == "Kid"){
-            kidInteract = other.gameObject;
+        }
+        else if (other.tag == "Kid")
+        {
+            kidInteract = other.transform.parent.gameObject;
         }
     }
 
@@ -130,7 +138,9 @@ public class Player : Person
         if (other.tag == "Teleport")
         {
             objTeleport = null;
-        } else if (other.tag == "Kid" && other.gameObject.Equals(kidInteract)){
+        }
+        else if (other.tag == "Kid" && other.gameObject.Equals(kidInteract))
+        {
             kidInteract = null;
         }
     }
