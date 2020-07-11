@@ -1,157 +1,19 @@
 fileFormatVersion: 2
-guid: 6255b8fee6f79bb45b1cbded18fcc291
+guid: 6b5ff2d39d84f9d45bfe0a74d57b66f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1919581465130484773
-    second: palhaco_1_0
+      213: 8251916584421891422
+    second: palhaAo_1_0
   - first:
-      213: -8382005515407688914
-    second: palhaco_1_1
+      213: -2982799598164693121
+    second: palhaAo_1_1
   - first:
-      213: 5131375913484616879
-    second: palhaco_1_2
+      213: 7297779336779178280
+    second: palhaAo_1_2
   - first:
-      213: -7455823292334836746
-    second: palhaco_1_3
-  - first:
-      213: 53080145985067187
-    second: palhaco_1_4
-  - first:
-      213: 6641513766377111698
-    second: palhaco_1_5
-  - first:
-      213: 8828315985568492023
-    second: palhaco_1_6
-  - first:
-      213: -3372179490557358174
-    second: palhaco_1_7
-  - first:
-      213: -8587586604562339162
-    second: palhaco_1_8
-  - first:
-      213: 2052798066044597674
-    second: palhaco_1_9
-  - first:
-      213: 7041485614596324535
-    second: palhaco_1_10
-  - first:
-      213: 1655230423038104062
-    second: palhaco_1_11
-  - first:
-      213: 5380517346748333826
-    second: palhaco_1_12
-  - first:
-      213: 50572909924859654
-    second: palhaco_1_13
-  - first:
-      213: 233506182773684786
-    second: palhaco_1_14
-  - first:
-      213: 9180268518878224733
-    second: palhaco_1_15
-  - first:
-      213: -7916590505490499777
-    second: palhaco_1_16
-  - first:
-      213: -2807210541828359029
-    second: palhaco_1_17
-  - first:
-      213: -2146313254555805385
-    second: palhaco_1_18
-  - first:
-      213: 1597332868894302036
-    second: palhaco_1_19
-  - first:
-      213: -3480650231172308472
-    second: palhaco_1_20
-  - first:
-      213: -6312654755651559003
-    second: palhaco_1_21
-  - first:
-      213: 6146745748215703307
-    second: palhaco_1_22
-  - first:
-      213: -7428478964534720370
-    second: palhaco_1_23
-  - first:
-      213: -1170394879020052615
-    second: palhaco_1_24
-  - first:
-      213: 1562516244632939848
-    second: palhaco_1_25
-  - first:
-      213: -2518573122035013178
-    second: palhaco_1_26
-  - first:
-      213: -1405091794109390139
-    second: palhaco_1_27
-  - first:
-      213: 3305083003237004265
-    second: palhaco_1_28
-  - first:
-      213: 4949372514044973404
-    second: palhaco_1_29
-  - first:
-      213: 1597018434832289486
-    second: palhaco_1_30
-  - first:
-      213: -9190359773567555884
-    second: palhaco_1_31
-  - first:
-      213: 1019064332408189409
-    second: palhaco_1_32
-  - first:
-      213: 7787495136349843860
-    second: palhaco_1_33
-  - first:
-      213: -8069027798680703802
-    second: palhaco_1_34
-  - first:
-      213: 758627221821476914
-    second: palhaco_1_35
-  - first:
-      213: 7348148466282491617
-    second: palhaco_1_36
-  - first:
-      213: -8301208241738937971
-    second: palhaco_1_37
-  - first:
-      213: -2417531366259844837
-    second: palhaco_1_38
-  - first:
-      213: 3342074776915204297
-    second: palhaco_1_39
-  - first:
-      213: 4731297043485042336
-    second: palhaco_1_40
-  - first:
-      213: 7550450821923164655
-    second: palhaco_1_41
-  - first:
-      213: 7097530436428680223
-    second: palhaco_1_42
-  - first:
-      213: 8674353404186341285
-    second: palhaco_1_43
-  - first:
-      213: -1627844025502689663
-    second: palhaco_1_44
-  - first:
-      213: -5231107385109570335
-    second: palhaco_1_45
-  - first:
-      213: 2857489709139378708
-    second: palhaco_1_46
-  - first:
-      213: -2950824510452868248
-    second: palhaco_1_47
-  - first:
-      213: 5796050377480369183
-    second: palhaco_1_48
-  - first:
-      213: 7914916728442747435
-    second: palhaco_1_49
+      213: 1163556752052958313
+    second: palhaAo_1_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -273,7 +135,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: palhaco_1_0
+      name: palhaAo_1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -287,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdb397de3d64c55e0800000000000000
-      internalID: -1919581465130484773
+      spriteID: e5d1f9ab962b48270800000000000000
+      internalID: 8251916584421891422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palhaco_1_1
+      name: palhaAo_1_1
       rect:
         serializedVersion: 2
         x: 160
@@ -308,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2b72ccb4622dab80800000000000000
-      internalID: -8382005515407688914
+      spriteID: f7f273ba197fa96d0800000000000000
+      internalID: -2982799598164693121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palhaco_1_2
+      name: palhaAo_1_2
       rect:
         serializedVersion: 2
         x: 320
@@ -329,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa40f34c43f463740800000000000000
-      internalID: 5131375913484616879
+      spriteID: 821a8e934abe64560800000000000000
+      internalID: 7297779336779178280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: palhaco_1_3
+      name: palhaAo_1_3
       rect:
         serializedVersion: 2
         x: 480
@@ -350,8 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f37c40e738978890800000000000000
-      internalID: -7455823292334836746
+      spriteID: 964bf1283b8c52010800000000000000
+      internalID: 1163556752052958313
       vertices: []
       indices: 
       edges: []

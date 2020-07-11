@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Person
 {
+    public Animator handAnim;
+
     SpriteRenderer sprRenderer;
     Vector3 dir = Vector3.zero;
     Vector3 vel = Vector3.zero;
@@ -12,9 +14,15 @@ public class Player : Person
     public float speed = 250f;
     public float jumpForce = 250f;
 
+    public GameObject kidInteract = null;
+    public GameObject holdKid = null;
+
+    public Transform posHoldKid;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         boxCol = GetComponent<BoxCollider2D>();
         rb2D = GetComponent<Rigidbody2D>();
         sprRenderer = GetComponent<SpriteRenderer>();
@@ -29,8 +37,26 @@ public class Player : Person
             Move();
             Jump();
             InputStair();
+            InputInteract();
         }
         rb2D.velocity = vel;
+    }
+
+    private void InputInteract()
+    {
+        if(Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid){
+            handAnim.Play("HoldHand");
+            kidInteract.transform.parent.position = posHoldKid.position;
+            kidInteract.transform.parent.parent = posHoldKid.transform;
+            kidInteract.transform.parent.GetComponent<Kid>().canMove = false;
+            holdKid = kidInteract;
+            kidInteract = null;
+        } else if (Input.GetKeyDown(KeyCode.X) && holdKid ){
+            handAnim.Play("NoneHand");
+            posHoldKid.transform.GetChild(0).GetComponent<Kid>().canMove = true;
+            posHoldKid.transform.GetChild(0).parent = gameObject.transform.parent;
+            holdKid = null;
+        }
     }
 
     private void InputStair()
@@ -73,11 +99,11 @@ public class Player : Person
 
         if (dir.x > 0)
         {
-            sprRenderer.flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
         }
         else if (dir.x < 0)
         {
-            sprRenderer.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         vel.x = dir.x * speed * Time.deltaTime;
         vel.y = rb2D.velocity.y;
@@ -94,6 +120,8 @@ public class Player : Person
         if (other.tag == "Teleport")
         {
             objTeleport = other.GetComponent<Teleport>();
+        } else if (other.tag == "Kid"){
+            kidInteract = other.gameObject;
         }
     }
 
@@ -102,6 +130,8 @@ public class Player : Person
         if (other.tag == "Teleport")
         {
             objTeleport = null;
+        } else if (other.tag == "Kid" && other.gameObject.Equals(kidInteract)){
+            kidInteract = null;
         }
     }
 }
