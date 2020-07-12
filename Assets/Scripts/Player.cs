@@ -36,7 +36,42 @@ public class Player : Person
 
     private void InputInteract()
     {
-        if (Input.GetKeyDown(KeyCode.X) && hidePlace && !holdKid)
+        if (Input.GetKeyDown(KeyCode.Space) && holdKid && objectivePlaceObj) // Objective
+        {
+            holdKid.GetComponent<Kid>().sprRenderer.sortingOrder = 3;
+            GameManger.instance.PutKid(holdKid);
+            holdKid = null;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && kidInteract && !holdKid  // Hold kid
+                && kidInteract.GetComponent<Kid>().currentState != Kid.states.HIDE
+                && kidInteract.GetComponent<Kid>().canMove
+                && Vector2.Distance(kidInteract.transform.position, gameObject.transform.position) < 1)
+        {
+            handAnim.Play("HoldHand");
+            kidInteract.transform.localScale = gameObject.transform.localScale;
+            kidInteract.transform.position = posHoldKid.position;
+            kidInteract.transform.parent = posHoldKid.transform;
+            kidInteract.GetComponent<Kid>().canMove = false;
+            kidInteract.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Kinematic;
+            kidInteract.GetComponent<Kid>().sprRenderer.sortingOrder = 1;
+            kidInteract.GetComponent<Kid>().detectCollider.enabled = false;
+            kidInteract.GetComponent<Kid>().anim.Play("Idle");
+            holdKid = kidInteract;
+            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
+            kidInteract = null;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && holdKid && !objectivePlaceObj) // Drop Kid
+        {
+            handAnim.Play("NoneHand");
+            holdKid.GetComponent<Kid>().canMove = true;
+            holdKid.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Dynamic;
+            holdKid.GetComponent<Kid>().sprRenderer.sortingOrder = 3;
+            holdKid.GetComponent<Kid>().detectCollider.enabled = true;
+            holdKid.transform.parent = kidsTransform;
+            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+            holdKid = null;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && hidePlace && !holdKid)  // Find Kid
         {
             if (hidePlace.kid)
             {
@@ -45,43 +80,14 @@ public class Player : Person
                 hidePlace.kid = null;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid 
-                && kidInteract.GetComponent<Kid>().currentState != Kid.states.HIDE
-                && kidInteract.GetComponent<Kid>().canMove)
-        {
-            handAnim.Play("HoldHand");
-            kidInteract.transform.localScale = gameObject.transform.localScale;
-            kidInteract.transform.position = posHoldKid.position;
-            kidInteract.transform.parent = posHoldKid.transform;
-            kidInteract.GetComponent<Kid>().canMove = false;
-            kidInteract.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Kinematic;
-            kidInteract.GetComponent<Kid>().detectCollider.enabled = false;
-            kidInteract.GetComponent<Kid>().anim.Play("Idle");
-            holdKid = kidInteract;
-            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
-            kidInteract = null;
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && holdKid && !objectivePlaceObj)
-        {
-            handAnim.Play("NoneHand");
-            holdKid.GetComponent<Kid>().canMove = true;
-            holdKid.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Dynamic;
-            holdKid.GetComponent<Kid>().detectCollider.enabled = true;
-            holdKid.transform.parent = kidsTransform;
-            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
-            holdKid = null;
-        }
-        else if (Input.GetKeyDown(KeyCode.X) && holdKid && objectivePlaceObj)
-        {
-            GameManger.instance.PutKid(holdKid);
-            holdKid = null;
-        }
     }
 
     private void InputStair()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && objTeleport)
+        if ((Input.GetKeyDown(KeyCode.UpArrow) && objTeleport && objTeleport.GetComponent<Teleport>().isUp) ||
+            (Input.GetKeyDown(KeyCode.DownArrow) && objTeleport && !objTeleport.GetComponent<Teleport>().isUp))
             objTeleport.GetComponent<Teleport>().ChangePlace(this);
+
     }
 
     private void Jump()
@@ -178,10 +184,6 @@ public class Player : Person
         if (other.tag == "Teleport")
         {
             objTeleport = null;
-        }
-        else if (other.tag == "Kid" && kidInteract && other.gameObject.Equals(kidInteract.GetComponent<Kid>().detectCollider))
-        {
-            kidInteract = null;
         }
         else if (other.tag == "ObjectivePlace")
         {

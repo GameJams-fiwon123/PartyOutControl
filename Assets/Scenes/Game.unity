@@ -1459,6 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toPlace: {fileID: 1945814717}
+  isUp: 0
 --- !u!1 &860323509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,6 +1898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toPlace: {fileID: 1669456621}
+  isUp: 1
 --- !u!1 &1006649795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,6 +3072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toPlace: {fileID: 991217423}
+  isUp: 0
 --- !u!1 &1699232511
 GameObject:
   m_ObjectHideFlags: 0
@@ -3554,6 +3557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toPlace: {fileID: 796787597}
+  isUp: 1
 --- !u!1 &1976772658
 GameObject:
   m_ObjectHideFlags: 3

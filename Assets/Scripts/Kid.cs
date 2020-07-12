@@ -29,7 +29,7 @@ public class Kid : Person
     // Update is called once per frame
     void Update()
     {
-        if (canMove  && GameManger.instance.gameStarted)
+        if (canMove && GameManger.instance.gameStarted)
         {
             detectCollider.enabled = true;
             switch (currentState)
@@ -59,10 +59,10 @@ public class Kid : Person
     private void Hide()
     {
         countTime -= Time.deltaTime;
-    
+
         if (Random.Range(0, 100000) > 95000 && countTime < 0)
         {
-            countTime = Random.Range(1f, 2f);
+            countTime = Random.Range(0f, 1.5f);
             sprRenderer.enabled = true;
             currentState = states.IDLE;
         }
@@ -116,7 +116,7 @@ public class Kid : Person
             if (Random.Range(0, 100000) > 90000)
             {
                 currentState = states.IDLE;
-                countTime = Random.Range(1f, 2f);
+                countTime = Random.Range(0f, 1.5f);
                 return;
             }
 
@@ -151,7 +151,7 @@ public class Kid : Person
     {
         LayerMask mask = LayerMask.GetMask("Wall");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.5f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 2.5f, mask);
 
         if (hit.collider != null)
         {
@@ -188,24 +188,27 @@ public class Kid : Person
     /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Teleport")
+        if (canMove)
         {
-            if (Random.Range(0, 100000) > 20000 && isRun)
+            if (other.tag == "Teleport")
             {
-                isRun = false;
-                detectCollider.enabled = false;
-                other.GetComponent<Teleport>().ChangePlace(this);
+                if (Random.Range(0, 100000) > 20000 && isRun)
+                {
+                    isRun = false;
+                    detectCollider.enabled = false;
+                    other.GetComponent<Teleport>().ChangePlace(this);
+                }
             }
-        }
-        else if (other.tag == "HidePlace")
-        {
-            if (Random.Range(0, 100000) > 20000 && isRun && !other.GetComponent<HidePlace>().kid)
+            else if (other.tag == "HidePlace")
             {
-                isRun = false;
-                currentState = states.HIDE;
-                countTime = Random.Range(3f, 5f);
-                sprRenderer.enabled = false;
-                other.GetComponent<HidePlace>().Hide(this);
+                if (Random.Range(0, 100000) > 20000 && isRun && !other.GetComponent<HidePlace>().kid)
+                {
+                    isRun = false;
+                    currentState = states.HIDE;
+                    countTime = Random.Range(3f, 5f);
+                    sprRenderer.enabled = false;
+                    other.GetComponent<HidePlace>().Hide(this);
+                }
             }
         }
     }

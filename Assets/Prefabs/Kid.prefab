@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 261833558457042095, guid: 784fb9441e3f0e740aa8595a26cade9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -126,7 +126,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6, y: 1.6}
+  m_Size: {x: 0.8, y: 1.6}
   m_EdgeRadius: 0
 --- !u!1 &8583954282403016941
 GameObject:
