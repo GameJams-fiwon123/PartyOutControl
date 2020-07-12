@@ -45,7 +45,9 @@ public class Player : Person
                 hidePlace.kid = null;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid && kidInteract.GetComponent<Kid>().currentState != Kid.states.HIDE)
+        else if (Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid 
+                && kidInteract.GetComponent<Kid>().currentState != Kid.states.HIDE
+                && kidInteract.GetComponent<Kid>().canMove)
         {
             handAnim.Play("HoldHand");
             kidInteract.transform.localScale = gameObject.transform.localScale;
@@ -99,7 +101,6 @@ public class Player : Person
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
 
             if (hit.collider.tag == "Floor")
                 return true;

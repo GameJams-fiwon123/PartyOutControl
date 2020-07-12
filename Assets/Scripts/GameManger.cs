@@ -12,17 +12,28 @@ public class GameManger : MonoBehaviour
     public float sec = 0;
 
     public Transform trasformObjective;
+    public Transform transformKids;
+    float countTimeLeave = 10;
+    int countKids = 0;
 
     [SerializeField]
     public bool gameStarted = false;
 
     public static GameManger instance;
 
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         gameStarted = true;
-        instance = this;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -31,6 +42,38 @@ public class GameManger : MonoBehaviour
         {
             TimeCount();
             VerifyKids();
+            if (countKids > 0)
+            {
+                countTimeLeave -= Time.deltaTime;
+                if (countTimeLeave <= 0)
+                {
+                    countTimeLeave = 0;
+                    LeaveAnyKid();
+                }
+            }
+        }
+    }
+
+    private void LeaveAnyKid()
+    {
+        int luckNumber = Random.Range(0, 10000);
+        if (luckNumber >= 567 - (10 * countKids) && luckNumber <= 567 + (10 * countKids))
+        {
+            int index = 0;
+            do
+            {
+                index = Random.Range(0, trasformObjective.childCount);
+            } while (trasformObjective.GetChild(index).childCount == 0);
+
+            Kid kid = trasformObjective.GetChild(index).GetChild(0).GetComponent<Kid>();
+
+            kid.canMove = true;
+            kid.rb2D.bodyType = RigidbodyType2D.Dynamic;
+            kid.detectCollider.enabled = true;
+            kid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+            kid.gameObject.transform.parent = transformKids;
+            countTimeLeave = 10 - countKids;
+            countKids--;
         }
     }
 
@@ -38,15 +81,18 @@ public class GameManger : MonoBehaviour
     {
         bool isFinished = true;
 
-        foreach(Transform t in trasformObjective){
-            if (t.childCount == 0){
+        foreach (Transform t in trasformObjective)
+        {
+            if (t.childCount == 0)
+            {
                 isFinished = false;
                 break;
             }
         }
 
-        if (isFinished){
-            Debug.Log("You Win");
+        if (isFinished)
+        {
+            LevelManager.instance.LoadWinGame();
             gameStarted = false;
         }
     }
@@ -61,6 +107,8 @@ public class GameManger : MonoBehaviour
 
             if (min < 0)
             {
+                min = 0;
+                sec = 0;
                 GameOver();
             }
         }
@@ -69,7 +117,7 @@ public class GameManger : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("GameOver");
+        LevelManager.instance.LoadGameOver();
         gameStarted = false;
     }
 
@@ -81,6 +129,7 @@ public class GameManger : MonoBehaviour
             index = Random.Range(0, trasformObjective.childCount);
         } while (trasformObjective.GetChild(index).childCount > 0);
 
+        countKids++;
         kid.transform.position = trasformObjective.GetChild(index).position;
         kid.transform.parent = trasformObjective.GetChild(index);
 

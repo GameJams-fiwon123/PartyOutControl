@@ -91,8 +91,6 @@ public class Kid : Person
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
-
             if (hit.collider.tag == "Floor")
                 return true;
         }
@@ -153,7 +151,7 @@ public class Kid : Person
     {
         LayerMask mask = LayerMask.GetMask("Wall");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.1f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 0.5f, mask);
 
         if (hit.collider != null)
         {
