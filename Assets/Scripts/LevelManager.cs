@@ -24,6 +24,10 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public void LoadStory(){
+        SceneManager.LoadScene("Story");
+    }
+
     public void LoadGameOver(){
         SceneManager.LoadScene("GameOver");
     }

@@ -12,6 +12,8 @@ public class Kid : Person
     public BoxCollider2D detectCollider;
     public SpriteRenderer sprRenderer;
 
+    public AudioSource audioLaugh;
+
     Vector3 dir = Vector3.zero;
     Vector3 vel = Vector3.zero;
 
@@ -19,11 +21,13 @@ public class Kid : Person
 
     float countTime = 0;
     bool isRun = false;
+    float timeLaugh;
 
     // Start is called before the first frame update
     void Start()
     {
         currentState = states.IDLE;
+        timeLaugh = Random.Range(1f, 5f);
     }
 
     // Update is called once per frame
@@ -31,6 +35,8 @@ public class Kid : Person
     {
         if (canMove && GameManger.instance.gameStarted)
         {
+            PlayLaugh();
+
             detectCollider.enabled = true;
             switch (currentState)
             {
@@ -50,9 +56,22 @@ public class Kid : Person
         }
         else
         {
+            audioLaugh.Stop();
             detectCollider.enabled = false;
             vel = Vector3.zero;
             rb2D.velocity = vel;
+        }
+    }
+
+    private void PlayLaugh()
+    {
+        if(!audioLaugh.isPlaying)
+            timeLaugh -= Time.deltaTime;
+
+        if (timeLaugh <= 0 && !audioLaugh.isPlaying)
+        {
+            audioLaugh.Play();
+            timeLaugh = Random.Range(1f, 5f);
         }
     }
 
