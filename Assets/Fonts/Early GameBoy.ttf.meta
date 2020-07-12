@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9213f5db2d174e948b957e243a321eba
+guid: ade4d09803dc3b243abb68f541fc6184
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Joystix
+  fontName: Early GameBoy
   fontNames:
-  - Joystix
+  - Early GameBoy
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

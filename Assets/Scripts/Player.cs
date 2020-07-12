@@ -77,6 +77,7 @@ public class Player : Person
             {
                 hidePlace.kid.sprRenderer.enabled = true;
                 hidePlace.kid.currentState = Kid.states.IDLE;
+                hidePlace.kid.countTime = UnityEngine.Random.Range(0f, 1.5f);
                 hidePlace.kid = null;
             }
         }

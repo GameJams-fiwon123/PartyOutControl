@@ -407,7 +407,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9213f5db2d174e948b957e243a321eba, type: 3}
+    m_Font: {fileID: 12800000, guid: ade4d09803dc3b243abb68f541fc6184, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -727,7 +727,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9213f5db2d174e948b957e243a321eba, type: 3}
+    m_Font: {fileID: 12800000, guid: ade4d09803dc3b243abb68f541fc6184, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -1285,7 +1285,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9213f5db2d174e948b957e243a321eba, type: 3}
+    m_Font: {fileID: 12800000, guid: ade4d09803dc3b243abb68f541fc6184, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -1362,7 +1362,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9213f5db2d174e948b957e243a321eba, type: 3}
+    m_Font: {fileID: 12800000, guid: ade4d09803dc3b243abb68f541fc6184, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -1762,7 +1762,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9213f5db2d174e948b957e243a321eba, type: 3}
+    m_Font: {fileID: 12800000, guid: ade4d09803dc3b243abb68f541fc6184, type: 3}
     m_FontSize: 300
     m_FontStyle: 0
     m_BestFit: 0
@@ -1774,7 +1774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Euler Mois\xE9s"
+  m_Text: Euler Moises
 --- !u!222 &2026890045
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1839,7 +1839,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 9213f5db2d174e948b957e243a321eba, type: 3}
+    m_Font: {fileID: 12800000, guid: ade4d09803dc3b243abb68f541fc6184, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0

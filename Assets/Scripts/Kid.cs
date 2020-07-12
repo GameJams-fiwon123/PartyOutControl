@@ -19,7 +19,7 @@ public class Kid : Person
 
     public states currentState;
 
-    float countTime = 0;
+    public float countTime = 0;
     bool isRun = false;
     float timeLaugh;
 
@@ -224,7 +224,7 @@ public class Kid : Person
                 {
                     isRun = false;
                     currentState = states.HIDE;
-                    countTime = Random.Range(3f, 5f);
+                    countTime = Random.Range(10f, 15f);
                     sprRenderer.enabled = false;
                     other.GetComponent<HidePlace>().Hide(this);
                 }

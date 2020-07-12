@@ -57,7 +57,7 @@ public class GameManger : MonoBehaviour
     private void LeaveAnyKid()
     {
         int luckNumber = Random.Range(0, 10000);
-        if (luckNumber >= 567 - (10 * countKids) && luckNumber <= 567 + (10 * countKids))
+        if (luckNumber >= (567 -  countKids) && luckNumber <= (567 + countKids))
         {
             int index = 0;
             do
@@ -72,7 +72,7 @@ public class GameManger : MonoBehaviour
             kid.detectCollider.enabled = true;
             kid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
             kid.gameObject.transform.parent = transformKids;
-            countTimeLeave = Random.Range(10, 15 - countKids);
+            countTimeLeave = Random.Range(25, 45 - countKids);
             countKids--;
         }
     }
@@ -92,6 +92,7 @@ public class GameManger : MonoBehaviour
 
         if (isFinished)
         {
+            AudioManager.instance.StopMusic();
             LevelManager.instance.LoadWinGame();
             gameStarted = false;
         }
