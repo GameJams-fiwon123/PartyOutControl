@@ -16,13 +16,15 @@ public class Player : Person
     public Transform posHoldKid;
     public Animator handAnim;
     public Transform kidsTransform;
+    GameObject objectivePlaceObj;
+    HidePlace hidePlace;
 
 
     // Update is called once per frame
     void Update()
     {
         vel = Vector3.zero;
-        if (canMove)
+        if (canMove && GameManger.instance.gameStarted)
         {
             Move();
             Jump();
@@ -34,7 +36,16 @@ public class Player : Person
 
     private void InputInteract()
     {
-        if (Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid)
+        if (Input.GetKeyDown(KeyCode.X) && hidePlace && !holdKid)
+        {
+            if (hidePlace.kid)
+            {
+                hidePlace.kid.sprRenderer.enabled = true;
+                hidePlace.kid.currentState = Kid.states.IDLE;
+                hidePlace.kid = null;
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && kidInteract && !holdKid && kidInteract.GetComponent<Kid>().currentState != Kid.states.HIDE)
         {
             handAnim.Play("HoldHand");
             kidInteract.transform.localScale = gameObject.transform.localScale;
@@ -42,17 +53,25 @@ public class Player : Person
             kidInteract.transform.parent = posHoldKid.transform;
             kidInteract.GetComponent<Kid>().canMove = false;
             kidInteract.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Kinematic;
+            kidInteract.GetComponent<Kid>().detectCollider.enabled = false;
+            kidInteract.GetComponent<Kid>().anim.Play("Idle");
             holdKid = kidInteract;
             holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
             kidInteract = null;
         }
-        else if (Input.GetKeyDown(KeyCode.X) && holdKid)
+        else if (Input.GetKeyDown(KeyCode.X) && holdKid && !objectivePlaceObj)
         {
             handAnim.Play("NoneHand");
             holdKid.GetComponent<Kid>().canMove = true;
             holdKid.GetComponent<Kid>().rb2D.bodyType = RigidbodyType2D.Dynamic;
+            holdKid.GetComponent<Kid>().detectCollider.enabled = true;
             holdKid.transform.parent = kidsTransform;
             holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+            holdKid = null;
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && holdKid && objectivePlaceObj)
+        {
+            GameManger.instance.PutKid(holdKid);
             holdKid = null;
         }
     }
@@ -99,24 +118,45 @@ public class Player : Person
         {
             transform.localScale = new Vector3(1, 1, 1);
             anim.Play("Run");
-            if(!holdKid)
+            if (!holdKid)
                 handAnim.Play("NoneHand");
         }
         else if (dir.x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             anim.Play("Run");
-            if(!holdKid)
+            if (!holdKid)
                 handAnim.Play("NoneHand");
-        } else {
+        }
+        else
+        {
             anim.Play("Idle");
-            if(!holdKid)
+            if (!holdKid)
                 handAnim.Play("IdleNoneHand");
         }
 
         vel.x = dir.x * speed * Time.deltaTime;
         vel.y = rb2D.velocity.y;
 
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "ObjectivePlace")
+        {
+            objectivePlaceObj = other.gameObject;
+        }
+        else if (other.tag == "Kid")
+        {
+            if (other.transform.parent.GetComponent<Kid>().currentState != Kid.states.HIDE)
+                kidInteract = other.transform.parent.gameObject;
+        }
+        else if (other.tag == "HidePlace")
+        {
+            HidePlace auxHidPlace = other.GetComponent<HidePlace>();
+            if (auxHidPlace.kid)
+                hidePlace = auxHidPlace;
+        }
     }
 
     /// <summary>
@@ -130,10 +170,6 @@ public class Player : Person
         {
             objTeleport = other.GetComponent<Teleport>();
         }
-        else if (other.tag == "Kid")
-        {
-            kidInteract = other.transform.parent.gameObject;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -145,6 +181,14 @@ public class Player : Person
         else if (other.tag == "Kid" && kidInteract && other.gameObject.Equals(kidInteract.GetComponent<Kid>().detectCollider))
         {
             kidInteract = null;
+        }
+        else if (other.tag == "ObjectivePlace")
+        {
+            objectivePlaceObj = null;
+        }
+        else if (other.tag == "HidePlace")
+        {
+            hidePlace = null;
         }
     }
 }

@@ -259,6 +259,6 @@ MonoBehaviour:
   jumpForce: 250
   canMove: 1
   objTeleport: {fileID: 0}
-  detectCollider: {fileID: 8583954282403016941}
+  detectCollider: {fileID: 8583954282403016943}
   sprRenderer: {fileID: 1749821503212026457}
   currentState: 0

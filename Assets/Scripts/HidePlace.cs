@@ -8,5 +8,6 @@ public class HidePlace : MonoBehaviour
 
     public void Hide(Kid k){
         kid = k;
+        kid.transform.position = gameObject.transform.position;
     }
 }

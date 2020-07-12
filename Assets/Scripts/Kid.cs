@@ -9,7 +9,7 @@ public class Kid : Person
     public enum states { IDLE, RUN, JUMP, HIDE };
 
     [Header("More Config")]
-    public GameObject detectCollider;
+    public BoxCollider2D detectCollider;
     public SpriteRenderer sprRenderer;
 
     Vector3 dir = Vector3.zero;
@@ -29,8 +29,9 @@ public class Kid : Person
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (canMove  && GameManger.instance.gameStarted)
         {
+            detectCollider.enabled = true;
             switch (currentState)
             {
                 case states.IDLE:
@@ -49,6 +50,7 @@ public class Kid : Person
         }
         else
         {
+            detectCollider.enabled = false;
             vel = Vector3.zero;
             rb2D.velocity = vel;
         }
@@ -57,7 +59,7 @@ public class Kid : Person
     private void Hide()
     {
         countTime -= Time.deltaTime;
-
+    
         if (Random.Range(0, 100000) > 95000 && countTime < 0)
         {
             countTime = Random.Range(1f, 2f);
@@ -102,6 +104,7 @@ public class Kid : Person
     private void Run()
     {
         countTime -= Time.deltaTime;
+        anim.Play("Run");
 
         if (Random.Range(0, 100000) > 90000)
         {
@@ -166,6 +169,7 @@ public class Kid : Person
     private void Idle()
     {
         countTime -= Time.deltaTime;
+        anim.Play("Idle");
 
         //Run or Hide or Interact
         if (Random.Range(0, 100000) > 20000 && countTime <= 0)
@@ -191,6 +195,7 @@ public class Kid : Person
             if (Random.Range(0, 100000) > 20000 && isRun)
             {
                 isRun = false;
+                detectCollider.enabled = false;
                 other.GetComponent<Teleport>().ChangePlace(this);
             }
         }
