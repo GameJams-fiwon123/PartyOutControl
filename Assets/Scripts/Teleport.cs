@@ -28,7 +28,7 @@ public class Teleport : MonoBehaviour
             {
                 p.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
-            p.transform.position += dir.normalized * 2.5f * Time.deltaTime;
+            p.transform.position += dir.normalized * 5f * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -43,7 +43,7 @@ public class Teleport : MonoBehaviour
             {
                 p.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
-            p.transform.position += dir.normalized * 2.5f * Time.deltaTime;
+            p.transform.position += dir.normalized * 5f * Time.deltaTime;
             yield return new WaitForSeconds(0.01f);
         }
         p.boxCol.enabled = true;

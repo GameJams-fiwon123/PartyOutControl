@@ -10,4 +10,10 @@ public class Win : MonoBehaviour
         AudioManager.instance.ChangeToMainMenu();
         LevelManager.instance.LoadCredits();
     }
+
+    public void ChangeSceneMainMenu()
+    {
+        AudioManager.instance.ChangeToMainMenu();
+        LevelManager.instance.LoadMainMenu();
+    }
 }

@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 8583954283553136785}
   - component: {fileID: 8583954283553136786}
   - component: {fileID: 6628793000439293302}
+  - component: {fileID: 6370209111182488220}
   m_Layer: 8
   m_Name: Kid
   m_TagString: Untagged
@@ -264,6 +265,7 @@ MonoBehaviour:
   sprRenderer: {fileID: 1749821503212026457}
   audioLaugh: {fileID: 6628793000439293302}
   currentState: 0
+  countTime: 0
 --- !u!82 &6628793000439293302
 AudioSource:
   m_ObjectHideFlags: 0
@@ -360,3 +362,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!210 &6370209111182488220
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583954283553136789}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

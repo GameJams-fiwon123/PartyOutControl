@@ -203,7 +203,7 @@ MonoBehaviour:
   rb2D: {fileID: 4025837959301369631}
   boxCol: {fileID: 6434573640042770888}
   anim: {fileID: 2491301186646002240}
-  speed: 250
+  speed: 275
   jumpForce: 250
   canMove: 1
   objTeleport: {fileID: 0}

@@ -31,9 +31,9 @@ public class Kid : Person
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (canMove && GameManger.instance.gameStarted)
+        if (canMove)
         {
             PlayLaugh();
 

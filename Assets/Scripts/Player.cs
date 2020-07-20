@@ -27,11 +27,23 @@ public class Player : Person
         if (canMove && GameManger.instance.gameStarted)
         {
             Move();
-            Jump();
+            // Jump();
             InputStair();
             InputInteract();
         }
-        rb2D.velocity = vel;
+    }
+
+    void FixedUpdate()
+    {
+        if (canMove && GameManger.instance.gameStarted)
+        {
+            vel.x = dir.x * speed * Time.deltaTime;
+            vel.y = rb2D.velocity.y;
+
+            rb2D.velocity = vel;
+        } else {
+            rb2D.velocity = Vector2.zero;
+        }
     }
 
     private void InputInteract()
@@ -91,13 +103,13 @@ public class Player : Person
 
     }
 
-    private void Jump()
-    {
-        if (Input.GetButtonDown("Jump") && IsGround())
-        {
-            vel.y = jumpForce * Time.deltaTime;
-        }
-    }
+    // private void Jump()
+    // {
+    //     if (Input.GetButtonDown("Jump") && IsGround())
+    //     {
+    //         vel.y = jumpForce * Time.deltaTime;
+    //     }
+    // }
 
     private bool IsGround()
     {
@@ -120,7 +132,6 @@ public class Player : Person
     private void Move()
     {
         dir.x = Input.GetAxisRaw("Horizontal");
-        // dir.y = Input.GetAxisRaw("Vertical");
 
         if (dir.x > 0)
         {
@@ -142,9 +153,6 @@ public class Player : Person
             if (!holdKid)
                 handAnim.Play("IdleNoneHand");
         }
-
-        vel.x = dir.x * speed * Time.deltaTime;
-        vel.y = rb2D.velocity.y;
 
     }
 

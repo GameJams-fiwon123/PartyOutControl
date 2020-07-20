@@ -31,6 +31,16 @@ public class GameManger : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine("WaitForStart", 5);
+    }
+
+    IEnumerator WaitForStart(int time)
+    {
+        while (time > 0){
+            textTime.text = string.Format("{0:0}", time);
+            yield return new WaitForSeconds(1);
+            time--;
+        }
         gameStarted = true;
     }
 
@@ -57,7 +67,7 @@ public class GameManger : MonoBehaviour
     private void LeaveAnyKid()
     {
         int luckNumber = Random.Range(0, 10000);
-        if (luckNumber >= (567 -  countKids) && luckNumber <= (567 + countKids))
+        if (luckNumber >= (567 - countKids) && luckNumber <= (567 + countKids))
         {
             int index = 0;
             do
