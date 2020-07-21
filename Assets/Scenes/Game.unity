@@ -304,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89464381}
   - component: {fileID: 89464380}
+  - component: {fileID: 89464382}
   m_Layer: 2
   m_Name: RoomRight
   m_TagString: Untagged
@@ -378,6 +379,25 @@ Transform:
   m_Father: {fileID: 1780448841}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &89464382
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89464379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d6b4df7f7f6bb754e8f8270facea2a68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &129775333
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129775335}
   - component: {fileID: 129775334}
+  - component: {fileID: 129775336}
   m_Layer: 2
   m_Name: RoomRight
   m_TagString: Untagged
@@ -462,6 +483,25 @@ Transform:
   m_Father: {fileID: 358464463}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &129775336
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129775333}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3677805ef2853c94798e96432ee9a06e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &161691141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,6 +1280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623732532}
   - component: {fileID: 623732531}
+  - component: {fileID: 623732533}
   m_Layer: 2
   m_Name: RoomCenter
   m_TagString: Untagged
@@ -1312,6 +1353,25 @@ Transform:
   m_Father: {fileID: 1780448841}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &623732533
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623732530}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b20202c60ba854341a5b50a4ed77cb1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &673012964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,6 +2527,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1106557959}
   - component: {fileID: 1106557958}
+  - component: {fileID: 1106557960}
   m_Layer: 2
   m_Name: RoomLeft
   m_TagString: Untagged
@@ -2541,6 +2602,25 @@ Transform:
   m_Father: {fileID: 1780448841}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1106557960
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106557957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24c1aa3fa4c10634693d5dcd6f97c124, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1117993071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,6 +3078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290448005}
   - component: {fileID: 1290448004}
+  - component: {fileID: 1290448006}
   m_Layer: 2
   m_Name: RoomCenter
   m_TagString: Untagged
@@ -3071,6 +3152,25 @@ Transform:
   m_Father: {fileID: 358464463}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1290448006
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290448003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9420fa6bbf09ae847904c6147b50d7da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1357876507
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,6 +4239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1894902164}
   - component: {fileID: 1894902163}
+  - component: {fileID: 1894902165}
   m_Layer: 2
   m_Name: RoomLeft
   m_TagString: Untagged
@@ -4214,6 +4315,25 @@ Transform:
   m_Father: {fileID: 358464463}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1894902165
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894902162}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e72e375f9a8f3b4796f022b0f2e2390, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1903961658
 GameObject:
   m_ObjectHideFlags: 0
@@ -4951,6 +5071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025837959301369627, guid: 83c5ceeb1036b7745848a0bf9df207ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4025837959301369629, guid: 83c5ceeb1036b7745848a0bf9df207ca,
         type: 3}
