@@ -16,9 +16,9 @@ public class Teleport : MonoBehaviour
     {
         p.canMove = false;
         p.boxCol.enabled = false;
-        p.anim.Play("Run");
         while (Vector3.Distance(gameObject.transform.position, p.transform.position) > 0.1f)
         {
+            p.anim.Play("Run");
             Vector3 dir = gameObject.transform.position - p.transform.position;
             if (dir.x > 0)
             {
@@ -34,6 +34,7 @@ public class Teleport : MonoBehaviour
 
         while (Vector3.Distance(toPlace.position, p.transform.position) > 0.1f)
         {
+            p.anim.Play("Run");
             Vector3 dir = toPlace.position - p.transform.position;
             if (dir.x > 0)
             {
