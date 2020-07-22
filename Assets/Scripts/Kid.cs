@@ -23,6 +23,10 @@ public class Kid : Person
     bool isRun = false;
     float timeLaugh;
 
+    float timeRunPlayer = 0;
+
+    bool hidePlayerSee = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +69,7 @@ public class Kid : Person
 
     private void PlayLaugh()
     {
-        if(!audioLaugh.isPlaying)
+        if (!audioLaugh.isPlaying)
             timeLaugh -= Time.deltaTime;
 
         if (timeLaugh <= 0 && !audioLaugh.isPlaying)
@@ -81,9 +85,12 @@ public class Kid : Person
 
         if (Random.Range(0, 100000) > 95000 && countTime < 0)
         {
-            countTime = Random.Range(0f, 1.5f);
-            sprRenderer.enabled = true;
-            currentState = states.IDLE;
+            if ((!SeePlayerBackward(2.5f) && !SeePlayerForward(2.5f)) || hidePlayerSee)
+            {
+                countTime = Random.Range(0f, 1.5f);
+                sprRenderer.enabled = true;
+                currentState = states.IDLE;
+            }
         }
         vel.x = Vector3.zero.x;
         vel.y = rb2D.velocity.y;
@@ -128,7 +135,7 @@ public class Kid : Person
             currentState = states.JUMP;
         }
 
-        if (countTime <= 0 || IsWallClose())
+        if (countTime <= 0 || IsWallClose() || (SeePlayerForward(3.5f) && !IsWallCloseBackward(5f) && countTime > 0.1f))
         {
             isRun = true;
 
@@ -166,11 +173,62 @@ public class Kid : Person
         rb2D.velocity = vel;
     }
 
+    private bool SeePlayerForward(float distance)
+    {
+        LayerMask mask = LayerMask.GetMask("Player");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, distance, mask);
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.tag == "Player")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool SeePlayerBackward(float distance)
+    {
+        LayerMask mask = LayerMask.GetMask("Player");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -dir, distance, mask);
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.tag == "Player")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private bool IsWallClose()
     {
         LayerMask mask = LayerMask.GetMask("Wall");
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 2.5f, mask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1.5f, mask);
+
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+
+            if (hit.collider.tag == "Wall")
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool IsWallCloseBackward(float distance)
+    {
+        LayerMask mask = LayerMask.GetMask("Wall");
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, -dir, distance, mask);
 
         if (hit.collider != null)
         {
@@ -189,7 +247,7 @@ public class Kid : Person
         anim.Play("Idle");
 
         //Run or Hide or Interact
-        if (Random.Range(0, 100000) > 20000 && countTime <= 0)
+        if ((Random.Range(0, 100000) > 20000 && countTime <= 0) || SeePlayerForward(3.5f))
         {
             currentState = states.RUN;
         }
@@ -211,7 +269,7 @@ public class Kid : Person
         {
             if (other.tag == "Teleport")
             {
-                if (Random.Range(0, 100000) > 20000 && isRun)
+                if (Random.Range(0, 100000) > 50000 && isRun)
                 {
                     isRun = false;
                     detectCollider.enabled = false;
@@ -220,8 +278,19 @@ public class Kid : Person
             }
             else if (other.tag == "HidePlace")
             {
-                if (Random.Range(0, 100000) > 20000 && isRun && !other.GetComponent<HidePlace>().kid)
+                int offset = 0;
+                if (!SeePlayerBackward(8f) && !SeePlayerForward(8f))
                 {
+                    offset = 25000;
+                }
+
+                if (Random.Range(0, 100000) > (90000 - offset) && isRun && !other.GetComponent<HidePlace>().kid)
+                {
+                    if (SeePlayerBackward(3.5f) && SeePlayerForward(3.5f))
+                    {
+                        hidePlayerSee = true;
+                    }
+
                     isRun = false;
                     currentState = states.HIDE;
                     countTime = Random.Range(10f, 15f);

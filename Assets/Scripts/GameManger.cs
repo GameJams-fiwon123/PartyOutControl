@@ -82,7 +82,7 @@ public class GameManger : MonoBehaviour
             kid.detectCollider.enabled = true;
             kid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
             kid.gameObject.transform.parent = transformKids;
-            countTimeLeave = Random.Range(25, 45 - countKids);
+            countTimeLeave = Random.Range(25-countKids*3, 45 - countKids);
             countKids--;
         }
     }
