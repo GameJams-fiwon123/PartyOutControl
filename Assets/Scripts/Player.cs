@@ -19,6 +19,8 @@ public class Player : Person
     GameObject objectivePlaceObj;
     HidePlace hidePlace;
 
+    private bool isStair = false;
+
 
     // Update is called once per frame
     void Update()
@@ -41,6 +43,13 @@ public class Player : Person
             vel.y = rb2D.velocity.y;
 
             rb2D.velocity = vel;
+
+            if (isStair){
+                objTeleport.GetComponent<Teleport>().ChangePlace(this);
+                isStair = false;
+
+            }
+
         } else {
             rb2D.velocity = Vector2.zero;
         }
@@ -99,7 +108,7 @@ public class Player : Person
     {
         if ((Input.GetKeyDown(KeyCode.UpArrow) && objTeleport && objTeleport.GetComponent<Teleport>().isUp) ||
             (Input.GetKeyDown(KeyCode.DownArrow) && objTeleport && !objTeleport.GetComponent<Teleport>().isUp))
-            objTeleport.GetComponent<Teleport>().ChangePlace(this);
+            isStair = true;
 
     }
 
