@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
         anim.Play("FadeIn");
     }
 
-    public void ChangeSceneStory(){
-        LevelManager.instance.LoadStory();
+    public void ChangeSceneStory1(){
+        LevelManager.instance.LoadStory1();
     }
 }

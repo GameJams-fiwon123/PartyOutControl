@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Story : MonoBehaviour
+public class Tutorial : MonoBehaviour
 {
-    public void ChangeSceneGame(){
+    public void ChangeSceneGame()
+    {
         AudioManager.instance.ChangeToGame();
         LevelManager.instance.LoadGame();
     }

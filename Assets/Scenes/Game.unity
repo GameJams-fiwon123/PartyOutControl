@@ -4958,6 +4958,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4025837958514656969, guid: 83c5ceeb1036b7745848a0bf9df207ca,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4025837958514656969, guid: 83c5ceeb1036b7745848a0bf9df207ca,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4025837959301369600, guid: 83c5ceeb1036b7745848a0bf9df207ca,
         type: 3}
       propertyPath: kidsTransform

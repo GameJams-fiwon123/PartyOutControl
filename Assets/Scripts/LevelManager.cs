@@ -24,8 +24,12 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    public void LoadStory(){
-        SceneManager.LoadScene("Story");
+    public void LoadStory1(){
+        SceneManager.LoadScene("Story1");
+    }
+
+    public void LoadStory2(){
+        SceneManager.LoadScene("Story2");
     }
 
     public void LoadGameOver(){
@@ -38,5 +42,9 @@ public class LevelManager : MonoBehaviour
 
     public void LoadCredits(){
         SceneManager.LoadScene("Credits");
+    }
+
+    public void LoadTutorial(){
+        SceneManager.LoadScene("Tutorial");
     }
 }
