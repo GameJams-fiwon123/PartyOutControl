@@ -31,13 +31,13 @@ public class GameManger : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("WaitForStart", 5);
+        textTime.text = string.Format("{0:0}:{1:00}", min, sec);
+        StartCoroutine("WaitForStart", 3);
     }
 
     IEnumerator WaitForStart(int time)
     {
         while (time > 0){
-            textTime.text = string.Format("{0:0}", time);
             yield return new WaitForSeconds(1);
             time--;
         }

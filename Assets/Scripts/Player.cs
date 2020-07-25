@@ -44,13 +44,16 @@ public class Player : Person
 
             rb2D.velocity = vel;
 
-            if (isStair){
+            if (isStair)
+            {
                 objTeleport.GetComponent<Teleport>().ChangePlace(this);
                 isStair = false;
 
             }
 
-        } else {
+        }
+        else
+        {
             rb2D.velocity = Vector2.zero;
         }
     }
@@ -94,14 +97,43 @@ public class Player : Person
         }
         else if (Input.GetKeyDown(KeyCode.Space) && hidePlace && !holdKid)  // Find Kid
         {
-            if (hidePlace.kid)
-            {
-                hidePlace.kid.sprRenderer.enabled = true;
-                hidePlace.kid.currentState = Kid.states.IDLE;
-                hidePlace.kid.countTime = UnityEngine.Random.Range(0f, 1.5f);
-                hidePlace.kid = null;
-            }
+            StartCoroutine("CoroutineFindKid");
         }
+    }
+
+    IEnumerator CoroutineFindKid()
+    {
+        canMove = false;
+
+        handAnim.Play("None");
+        anim.Play("Find");
+
+        yield return new WaitForSeconds(1);
+        
+        if (hidePlace.kid)
+        {
+            hidePlace.kid.sprRenderer.enabled = true;
+            hidePlace.kid.currentState = Kid.states.IDLE;
+            // hidePlace.kid.countTime = UnityEngine.Random.Range(0f, 1.5f);
+
+            // Hold Kid
+            handAnim.Play("HoldHand");
+            hidePlace.kid.transform.localScale = gameObject.transform.localScale;
+            hidePlace.kid.transform.position = posHoldKid.position;
+            hidePlace.kid.transform.parent = posHoldKid.transform;
+            hidePlace.kid.canMove = false;
+            hidePlace.kid.rb2D.bodyType = RigidbodyType2D.Kinematic;
+            hidePlace.kid.sprRenderer.sortingOrder = 1;
+            hidePlace.kid.detectCollider.enabled = false;
+            hidePlace.kid.anim.Play("Idle");
+
+            holdKid = hidePlace.kid.gameObject;
+            holdKid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
+
+            hidePlace.kid = null;
+        }
+
+        canMove = true;
     }
 
     private void InputStair()
@@ -179,8 +211,7 @@ public class Player : Person
         else if (other.tag == "HidePlace")
         {
             HidePlace auxHidPlace = other.GetComponent<HidePlace>();
-            if (auxHidPlace.kid)
-                hidePlace = auxHidPlace;
+            hidePlace = auxHidPlace;
         }
     }
 
