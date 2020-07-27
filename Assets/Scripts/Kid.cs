@@ -27,6 +27,8 @@ public class Kid : Person
 
     bool hidePlayerSee = false;
 
+    public HidePlace hidePlace;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +92,8 @@ public class Kid : Person
                 countTime = Random.Range(0f, 1.5f);
                 sprRenderer.enabled = true;
                 currentState = states.IDLE;
+                hidePlace.kid = null;
+                hidePlace = null;
             }
         }
         vel.x = Vector3.zero.x;
@@ -215,8 +219,6 @@ public class Kid : Person
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
-
             if (hit.collider.tag == "Wall")
                 return true;
         }
@@ -232,8 +234,6 @@ public class Kid : Person
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.name);
-
             if (hit.collider.tag == "Wall")
                 return true;
         }
@@ -295,7 +295,8 @@ public class Kid : Person
                     currentState = states.HIDE;
                     countTime = Random.Range(10f, 15f);
                     sprRenderer.enabled = false;
-                    other.GetComponent<HidePlace>().Hide(this);
+                    hidePlace = other.GetComponent<HidePlace>();
+                    hidePlace.Hide(this);
                 }
             }
         }

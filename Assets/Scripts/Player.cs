@@ -19,6 +19,10 @@ public class Player : Person
     GameObject objectivePlaceObj;
     HidePlace hidePlace;
 
+    public AudioSource audioSource;
+    public AudioClip clipGrab;
+    public AudioClip clipRelease;
+
     private bool isStair = false;
 
 
@@ -29,7 +33,6 @@ public class Player : Person
         if (canMove && GameManger.instance.gameStarted)
         {
             Move();
-            // Jump();
             InputStair();
             InputInteract();
         }
@@ -62,6 +65,10 @@ public class Player : Person
     {
         if (Input.GetKeyDown(KeyCode.Space) && holdKid && objectivePlaceObj) // Objective
         {
+            audioSource.Stop();
+            audioSource.clip = clipRelease;
+            audioSource.Play();
+
             holdKid.GetComponent<Kid>().sprRenderer.sortingOrder = 3;
             GameManger.instance.PutKid(holdKid);
             holdKid = null;
@@ -71,6 +78,10 @@ public class Player : Person
                 && kidInteract.GetComponent<Kid>().canMove
                 && Vector2.Distance(kidInteract.transform.position, gameObject.transform.position) < 1)
         {
+            audioSource.Stop();
+            audioSource.clip = clipGrab;
+            audioSource.Play();
+
             handAnim.Play("HoldHand");
             kidInteract.transform.localScale = gameObject.transform.localScale;
             kidInteract.transform.position = posHoldKid.position;
@@ -109,9 +120,15 @@ public class Player : Person
         anim.Play("Find");
 
         yield return new WaitForSeconds(1);
-        
+
         if (hidePlace.kid)
         {
+            audioSource.Stop();
+            audioSource.clip = clipGrab;
+            audioSource.Play();
+
+            hidePlace.kid.canMove = false;
+
             hidePlace.kid.sprRenderer.enabled = true;
             hidePlace.kid.currentState = Kid.states.IDLE;
             // hidePlace.kid.countTime = UnityEngine.Random.Range(0f, 1.5f);
@@ -121,7 +138,6 @@ public class Player : Person
             hidePlace.kid.transform.localScale = gameObject.transform.localScale;
             hidePlace.kid.transform.position = posHoldKid.position;
             hidePlace.kid.transform.parent = posHoldKid.transform;
-            hidePlace.kid.canMove = false;
             hidePlace.kid.rb2D.bodyType = RigidbodyType2D.Kinematic;
             hidePlace.kid.sprRenderer.sortingOrder = 1;
             hidePlace.kid.detectCollider.enabled = false;
