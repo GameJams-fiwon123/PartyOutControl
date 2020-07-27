@@ -18,10 +18,12 @@ public class LevelManager : MonoBehaviour
 
     public void LoadMainMenu(){
         SceneManager.LoadScene("MainMenu");
+        AudioManager.instance.PlayClick();
     }
 
     public void LoadGame(){
         SceneManager.LoadScene("Game");
+        AudioManager.instance.PlayClick();
     }
 
     public void LoadStory1(){
@@ -30,6 +32,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadStory2(){
         SceneManager.LoadScene("Story2");
+        AudioManager.instance.PlayClick();
     }
 
     public void LoadGameOver(){
@@ -42,6 +45,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadCredits(){
         SceneManager.LoadScene("Credits");
+        AudioManager.instance.PlayClick();
     }
 
     public void LoadTutorial(){

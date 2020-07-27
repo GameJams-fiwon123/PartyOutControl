@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public AudioSource audioMusic;
+     public AudioSource audioClick;
 
     public AudioClip musicGame;
     public AudioClip musicMainMenu;
@@ -33,5 +34,10 @@ public class AudioManager : MonoBehaviour
 
     public void StopMusic(){
         audioMusic.Stop();
+    }
+
+    public void PlayClick(){
+        audioClick.Stop();
+        audioClick.Play();
     }
 }
