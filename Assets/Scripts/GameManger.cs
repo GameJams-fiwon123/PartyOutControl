@@ -37,7 +37,8 @@ public class GameManger : MonoBehaviour
 
     IEnumerator WaitForStart(int time)
     {
-        while (time > 0){
+        while (time > 0)
+        {
             yield return new WaitForSeconds(1);
             time--;
         }
@@ -57,7 +58,6 @@ public class GameManger : MonoBehaviour
                 countTimeLeave -= Time.deltaTime;
                 if (countTimeLeave <= 0)
                 {
-                    countTimeLeave = 0;
                     LeaveAnyKid();
                 }
             }
@@ -66,25 +66,23 @@ public class GameManger : MonoBehaviour
 
     private void LeaveAnyKid()
     {
-        int luckNumber = Random.Range(0, 10000);
-        if (luckNumber >= (567 - countKids) && luckNumber <= (567 + countKids))
+        int index = 0;
+        do
         {
-            int index = 0;
-            do
-            {
-                index = Random.Range(0, trasformObjective.childCount);
-            } while (trasformObjective.GetChild(index).childCount == 0);
+            index = Random.Range(0, trasformObjective.childCount);
+        } while (trasformObjective.GetChild(index).childCount == 0);
 
-            Kid kid = trasformObjective.GetChild(index).GetChild(0).GetComponent<Kid>();
+        Kid kid = trasformObjective.GetChild(index).GetChild(0).GetComponent<Kid>();
 
-            kid.canMove = true;
-            kid.rb2D.bodyType = RigidbodyType2D.Dynamic;
-            kid.detectCollider.enabled = true;
-            kid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
-            kid.gameObject.transform.parent = transformKids;
-            countTimeLeave = Random.Range(25-countKids*3, 45 - countKids);
-            countKids--;
-        }
+        kid.canMove = true;
+        kid.rb2D.bodyType = RigidbodyType2D.Dynamic;
+        kid.detectCollider.enabled = true;
+        kid.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
+        kid.gameObject.transform.parent = transformKids;
+
+        countTimeLeave = Random.Range(20 - countKids, 40 - countKids * 3);
+
+        countKids--;
     }
 
     private void VerifyKids()
@@ -139,6 +137,9 @@ public class GameManger : MonoBehaviour
         {
             index = Random.Range(0, trasformObjective.childCount);
         } while (trasformObjective.GetChild(index).childCount > 0);
+
+        float timeAux = countTimeLeave;
+        countTimeLeave = Random.Range(20 - countKids, 40 - countKids * 3) - timeAux;
 
         countKids++;
         kid.transform.position = trasformObjective.GetChild(index).position;

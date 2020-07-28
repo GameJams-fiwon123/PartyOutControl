@@ -12,6 +12,9 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         anim = GetComponent<Animator>();
     }
 
