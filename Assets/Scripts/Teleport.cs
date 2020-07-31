@@ -28,8 +28,8 @@ public class Teleport : MonoBehaviour
             {
                 p.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
-            p.rb2D.velocity = dir.normalized * p.speed * Time.deltaTime;
-            yield return null;
+            p.transform.position += dir.normalized * 5f * Time.deltaTime;
+            yield return new WaitForSeconds(0.01f);
         }
 
         while (Vector3.Distance(toPlace.position, p.transform.position) > 0.5f)
@@ -44,13 +44,10 @@ public class Teleport : MonoBehaviour
             {
                 p.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
-            p.rb2D.velocity = dir.normalized * p.speed * Time.deltaTime;
-            yield return null;
+            p.transform.position += dir.normalized * 5f * Time.deltaTime;
+            yield return new WaitForSeconds(0.01f);
         }
-
-        p.rb2D.velocity = Vector2.zero;
         p.boxCol.enabled = true;
         p.canMove = true;
-        p.isStair = false;
     }
 }

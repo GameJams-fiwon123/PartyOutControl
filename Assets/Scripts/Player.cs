@@ -23,6 +23,8 @@ public class Player : Person
     public AudioClip clipGrab;
     public AudioClip clipRelease;
 
+    private bool isStair = false;
+
 
     // Update is called once per frame
     void Update()
@@ -48,13 +50,14 @@ public class Player : Person
             if (isStair)
             {
                 objTeleport.GetComponent<Teleport>().ChangePlace(this);
+                isStair = false;
+
             }
 
         }
         else
         {
-            if (!isStair)
-                rb2D.velocity = Vector2.zero;
+            rb2D.velocity = Vector2.zero;
         }
     }
 
@@ -156,6 +159,7 @@ public class Player : Person
             isStair = true;
 
     }
+
 
     private bool IsGround()
     {

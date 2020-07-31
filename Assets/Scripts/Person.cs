@@ -14,7 +14,6 @@ public class Person : MonoBehaviour
     public float speed = 250f;
     public float jumpForce = 250f;
     public bool canMove = true;
-    public bool isStair = false;
 
     [HideInInspector]
     public Teleport objTeleport = null;
