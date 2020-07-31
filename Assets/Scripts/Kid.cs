@@ -62,10 +62,13 @@ public class Kid : Person
         }
         else
         {
-            audioLaugh.Stop();
-            detectCollider.enabled = false;
-            vel = Vector3.zero;
-            rb2D.velocity = vel;
+            if (!isStair)
+            {
+                audioLaugh.Stop();
+                detectCollider.enabled = false;
+                vel = Vector3.zero;
+                rb2D.velocity = vel;
+            }
         }
     }
 
@@ -271,6 +274,7 @@ public class Kid : Person
             {
                 if (Random.Range(0, 100000) > 50000 && isRun)
                 {
+                    isStair = true;
                     isRun = false;
                     detectCollider.enabled = false;
                     other.GetComponent<Teleport>().ChangePlace(this);
